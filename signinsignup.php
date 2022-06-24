@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Login V18</title>
+    <title>BOOK REVIEW | User Entrance</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/png" href="/bookreview/public/account_layouts/images/icons/favicon.ico" />
@@ -17,18 +17,30 @@
     <link rel="stylesheet" type="text/css" href="/bookreview/public/account_layouts/css/util.css">
     <link rel="stylesheet" type="text/css" href="/bookreview/public/account_layouts/css/main.css">
 </head>
+<style>
+    #create_form {
+        display: none;
+    }
+</style>
 
-<body style="background-color: #666666;">
+<body>
+    <div class="navigation d-flex justify-content-center m-2">
+        <a href="/bookreview/home.php" class="btn btn-primary mr-2">Home</a>
+        <button id="createBtn" class="btn btn-info createBtn">Create New Account</button>
+    </div>
+
+
 
     <div class="limiter">
         <div class="container-login100">
+
             <div class="wrap-login100">
-                <form class="login100-form validate-form">
+                <!-- <form class="login100-form validate-form"> -->
+
+                <form class="login100-form validate-form" id="loginForm">
                     <span class="login100-form-title p-b-43">
                         Login to continue
                     </span>
-
-
                     <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
                         <input class="input100" type="text" name="email">
                         <span class="focus-input100"></span>
@@ -81,6 +93,63 @@
                     </div>
                 </form>
 
+                <form class="login100-form validate-form" id="create_form">
+                    <span class="login100-form-title p-b-43">
+                        Create A New Account...
+                    </span>
+                    <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
+                        <input class="input100" type="text" name="email" id="email">
+                        <span class="focus-input100"></span>
+                        <span class="label-input100">Email</span>
+                    </div>
+                    <div class="wrap-input100 validate-input" data-validate="Valid User Name is required: ex@abc.xyz">
+                        <input class="input100" type="text" name="userName" id="userName">
+                        <span class="focus-input100"></span>
+                        <span class="label-input100">User Name</span>
+                    </div>
+
+                    <div class="wrap-input100 validate-input" data-validate="Password is required">
+                        <input class="input100" type="password" name="pass">
+                        <span class="focus-input100"></span>
+                        <span class="label-input100">Password</span>
+                    </div>
+
+                    <div class="flex-sb-m w-full p-t-3 p-b-32">
+
+                        <div>
+                            <a href="#" class="txt1">
+                                Have Account ? Sign in
+                            </a>
+                        </div>
+                    </div>
+
+
+                    <div class="container-login100-form-btn">
+                        <button class="login100-form-btn">
+                            Create Account!.
+                        </button>
+                    </div>
+
+                    <div class="text-center p-t-46 p-b-20">
+                        <span class="txt2">
+                            or sign up using
+                        </span>
+                    </div>
+
+                    <div class="login100-form-social flex-c-m">
+                        <a href="#" class="login100-form-social-item flex-c-m bg1 m-r-5">
+                            <i class="fa fa-google" aria-hidden="true"></i>
+                        </a>
+                        <a href="#" class="login100-form-social-item flex-c-m bg1 m-r-5">
+                            <i class="fa fa-facebook-f" aria-hidden="true"></i>
+                        </a>
+
+                        <a href="#" class="login100-form-social-item flex-c-m bg2 m-r-5">
+                            <i class="fa fa-twitter" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </form>
+
                 <div class="login100-more" style="background-image: url('/bookreview/public/account_layouts/images/bg-01.jpg');">
                 </div>
             </div>
@@ -100,6 +169,7 @@
     <script src="/bookreview/public/account_layouts/vendor/daterangepicker/daterangepicker.js"></script>
     <script src="/bookreview/public/account_layouts/vendor/countdowntime/countdowntime.js"></script>
     <script src="/bookreview/public/account_layouts/js/main.js"></script>
+    <script src="/bookreview/public/account_layouts/js/custom.js"></script>
 
 </body>
 

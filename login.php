@@ -18,15 +18,12 @@
     <link rel="stylesheet" type="text/css" href="/bookreview/public/account_layouts/css/main.css">
 </head>
 <style>
-    #create_form {
-        display: none;
-    }
 </style>
 
 <body>
     <div class="navigation d-flex justify-content-center m-2">
         <a href="/bookreview/home.php" class="btn btn-primary mr-2">Home</a>
-        <button id="createBtn" class="btn btn-info createBtn">Create New Account</button>
+        <button id="createBtn" class="btn btn-info createBtn"></button>
     </div>
 
 
@@ -98,18 +95,18 @@
                         Create A New Account...
                     </span>
                     <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
-                        <input class="input100" type="text" name="email" id="email">
+                        <input class="input100" type="text" name="email" id="new_email">
                         <span class="focus-input100"></span>
                         <span class="label-input100">Email</span>
                     </div>
                     <div class="wrap-input100 validate-input" data-validate="Valid User Name is required: ex@abc.xyz">
-                        <input class="input100" type="text" name="userName" id="userName">
+                        <input class="input100" type="text" name="userName" id="new_user">
                         <span class="focus-input100"></span>
                         <span class="label-input100">User Name</span>
                     </div>
 
                     <div class="wrap-input100 validate-input" data-validate="Password is required">
-                        <input class="input100" type="password" name="pass">
+                        <input class="input100" type="password" name="pass" id="new_psw">
                         <span class="focus-input100"></span>
                         <span class="label-input100">Password</span>
                     </div>
@@ -125,7 +122,7 @@
 
 
                     <div class="container-login100-form-btn">
-                        <button class="login100-form-btn">
+                        <button class="login100-form-btn" id="new_user">
                             Create Account!.
                         </button>
                     </div>

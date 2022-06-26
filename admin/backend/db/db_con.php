@@ -43,6 +43,9 @@ require_once("db_config.php");
         return $data;
     }
 
+    public function last_id() {
+        return $this->connection->insert_id;
+    }
 
 
     }

@@ -3,14 +3,14 @@
 
 
 class User {
-    protected static $db_table = "users";
-    protected $table_cols = array("photo_id","name","email","password");
+    protected static $db_table = "";
+    // protected $table_cols = array("photo_id","name","email","password");
     
-    public $id;
-    public $photo_id;
-    public $name;
-    public $email;
-    public $password;
+    // public $id;
+    // public $photo_id;
+    // public $name;
+    // public $email;
+    // public $password;
 
     
     public static function find_all_item() {
@@ -65,8 +65,13 @@ class User {
         if(!$result) {
             return $result;
         }else{
-            return $result;
+            return true;
         }
+    }
+
+
+    public function update() {
+        return "hello";
     }
 
 

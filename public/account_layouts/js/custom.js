@@ -57,18 +57,20 @@ $(document).ready(function () {
         }
 
         // checking all object prop and val, if null or empty then return true
-        let values = Object.values(new_user);
-        console.log(values);
+        
         // ajax request 
-        // $.ajax({
-        //     type: "POST",
-        //     url: "/bookreview/admin/signin.php",
-        //     data: new_user,
-        //     // dataType: "dataType",
-        //     success: function (response) {
-        //         console.log(response);
-        //     }
-        // });
+        if(check_inputs(new_user)) {
+        $.ajax({
+            type: "POST",
+            url: "/bookreview/admin/signin.php",
+            data: new_user,
+            success: function (response) {
+                console.log(response);
+            }
+        });
+        }else{
+            console.log("form inputs invalid");
+        }
 
 
         // end of ajax
@@ -76,6 +78,22 @@ $(document).ready(function () {
         e.preventDefault();
     });
 // console.log(create_form);
+
+    // validator function
+
+    function check_inputs(obj) {
+        let val = Object.values(obj);
+        for(i = 0; i < val.length; i++) {
+            if (val[i] == "" || val[i] == null || val.length < 3) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+
+
+
 
 
 });

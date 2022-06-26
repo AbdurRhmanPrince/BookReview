@@ -1,6 +1,6 @@
 <?php
-
-class Profile {
+// require_once("init.php");
+class Profile  extends User {
 
     // protected static $db_table = "users";
     protected $table_cols = array("photo_id", "name", "email", "password");
@@ -12,12 +12,20 @@ class Profile {
     public $password;
     
 
-    public function validate_user() {
+    public  function validate_user() {
         global $database;
+        $sql = "SELECT * FROM users WHERE email = '$this->email'";
+        $result = $database->run_query($sql);
+        if($result->num_rows > 0) {
+            return false;
+        }else{
+            return true;
+        }
 
-        $sql = "SELECT * FROM users WHERE ";
+    }
 
-
+    public function save() {
+        return isset($id) ? $this->update() : $this->create_user();
     }
 
 

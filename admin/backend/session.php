@@ -7,12 +7,16 @@ class session {
    public function __construct()
    {
     session_start();
+    if(!empty($_SESSION["user_id"])) {
+       $this->user_id = $_SESSION["user_id"];
+       $this->loggedIn = true;
+    }
    }
 
 
    public function login($id) {
     $_SESSION["user_id"] = $id;
-     $this->user_id = $id;
+     $this->user_id = $_SESSION["user_id"];
      $this->loggedIn = true;
    }
 

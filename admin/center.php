@@ -1,9 +1,9 @@
 <?php
-// require_once("init.php");
+require_once("init.php");
 
 
 class User {
-    protected static $db_table = "";
+    protected static $db_table;
     // protected $table_cols = array("photo_id","name","email","password");
     
     // public $id;
@@ -61,6 +61,7 @@ class User {
 
         $sql = "INSERT INTO ". static::$db_table . " (". implode(",", $array_keys).") VALUES ( '". implode("','",$array_val) ."')";
 
+        // return $sql;
         $result = $database->run_query($sql);
         if(!$result) {
             return $result;
@@ -78,7 +79,6 @@ class User {
 
 }
 
-$user = new User();
 
 
 

@@ -2,7 +2,7 @@
 // require_once("init.php");
 class Profile  extends User {
 
-    // protected static $db_table = "users";
+    protected static $db_table = "users";
     protected $table_cols = array("photo_id", "name", "email", "password");
 
     public $id;
@@ -25,7 +25,14 @@ class Profile  extends User {
     }
 
     public function save() {
-        return isset($id) ? $this->update() : $this->create_user();
+        // return !empty($id) ? $this->update() : $this->create_user();
+
+        return isset($this->id) ? $this->update() : $this->create_user();
+        // if(isset($this->id)) {
+        //     echo "update method";
+        // }else{
+        //     echo "create method";
+        // }
     }
 
 

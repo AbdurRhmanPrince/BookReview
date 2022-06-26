@@ -9,11 +9,14 @@ if(!empty($_POST["email"]) && !empty($_POST["password"])) {
     $users->email = $database->escape_string($_POST["email"]);
     $users->password = $database->escape_string($_POST["password"]);
 
-    if($profile->validate_user()) {
-        if($users->create_user()) {
-            $id = $database->last_id();
-            $session->login($id);
-            echo "success $id";
+    if($users->validate_user()) {
+        if($users->save()) {
+             $id = $database->last_id();
+             $session->login($id);
+            // echo "success";
+            echo $session->user_id;
+        }else{
+            echo "failed";
         }
     }else{
         echo "email is being used";

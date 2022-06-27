@@ -3,13 +3,15 @@
 class Profile  extends User {
 
     protected static $db_table = "users";
-    protected $table_cols = array("photo_id", "name", "email", "password");
+    protected $table_cols = array("id","photo_id", "name", "email", "password");
 
     public $id;
     public $photo_id;
     public $name;
     public $email;
     public $password;
+    public $time;
+
     
 
     public  function validate_user() {
@@ -24,16 +26,8 @@ class Profile  extends User {
 
     }
 
-    public function save() {
-        // return !empty($id) ? $this->update() : $this->create_user();
 
-        return isset($this->id) ? $this->update() : $this->create_user();
-        // if(isset($this->id)) {
-        //     echo "update method";
-        // }else{
-        //     echo "create method";
-        // }
-    }
+
 
 
 
@@ -43,6 +37,7 @@ class Profile  extends User {
 
 }
 
+$user = new Profile();
 
 
 ?>

@@ -15,17 +15,45 @@ class User {
     
     public static function find_all_item() {
         global $database;
-        $sql = "SELECT * FROM ". self::$db_table;
+        $sql = "SELECT * FROM ". static::$db_table;
         $result = $database->run_query($sql);
-        return $result;
+        $data_set = array();
+        while ($row = $result->fetch_assoc()) {
+            $data_set[] = static::object_data($row);
+        }
+        return $data_set;
     }
 
     public static function find_item($id)
     {
         global $database;
-        $sql = "SELECT * FROM " . self::$db_table . " WHERE id= '$id'";
+        $sql = "SELECT * FROM " . static::$db_table . " WHERE id= '$id'";
         $result = $database->run_query($sql);
-        return $result;
+        $data = $result->fetch_assoc();
+        return static::object_data($data);
+        // return $sql;
+    }
+
+    public  function has_key($key) {
+        $prop = get_object_vars($this);
+        return array_key_exists($key,$prop);
+
+    }
+
+    public static function object_data($data) {
+        $classObject = get_called_class();
+        $cls = new $classObject();
+            foreach($data as $key => $val) {
+                if($cls->has_key($key)) {
+                     $cls->$key= $val;    
+
+                }
+          }
+            
+            return $cls;
+        
+
+
     }
 
 
@@ -52,7 +80,7 @@ class User {
 
 
 
-    public function create_user() {
+    public function create() {
         global $database;
         $properties = $this->set_properties_val();
 
@@ -75,7 +103,10 @@ class User {
         return "hello";
     }
 
-
+    public function save()
+    {
+        return isset($this->id) ? $this->update() : $this->create();
+    }
 
 }
 

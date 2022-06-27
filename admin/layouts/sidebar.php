@@ -11,7 +11,7 @@
             </li><!-- End Dashboard Nav -->
             <li class="nav-heading">BOOKS</li>
             <li class="nav-item">
-                <a class="nav-link collapsed" href="admin/addbooks.php">
+                <a class="nav-link collapsed" href="/bookreview/admin/addbooks.php">
                     <i class="bi bi-cloud-plus"></i>
                     <span>Add Books</span>
                 </a>

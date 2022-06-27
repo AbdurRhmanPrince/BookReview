@@ -89,18 +89,34 @@ class User {
 
         $sql = "INSERT INTO ". static::$db_table . " (". implode(",", $array_keys).") VALUES ( '". implode("','",$array_val) ."')";
 
-        // return $sql;
         $result = $database->run_query($sql);
         if(!$result) {
             return $result;
         }else{
             return true;
         }
+        // return true;
     }
 
 
+
     public function update() {
-        return "hello";
+        global $database;
+        $properties = $this->set_properties_val();
+        $prop_val = array();
+        foreach ($properties as $key => $val) {
+            $prop_val[] = "{$key} = '{$val}'";
+        }
+        $sql = "UPDATE " . static::$db_table . " SET ";
+        $sql .= implode(", ", $prop_val);
+        $sql .= " WHERE id = $this->id";
+        $result = $database->run_query($sql);
+        
+        if ($result > 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public function save()

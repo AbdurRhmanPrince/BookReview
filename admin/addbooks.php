@@ -1,9 +1,11 @@
+<?php require_once("init.php"); ?>
+<?php
+global $session;
+$user = Profile::find_item($session->user_id);
+?>
 
-<?php require_once("init.php");?>
 <?php require_once("layouts/header.php"); ?>
 <?php require_once("layouts/sidebar.php"); ?>
-
-
 <div class="add_new_books">
     <div class="card">
         <div class="card-body">
@@ -11,7 +13,7 @@
 
             <!-- Vertical Form -->
             <form class="row g-3" enctype="multipart/form-data" id="form">
-                <input type="hidden" name="user_id" value="<?php echo $session->user_id?>">
+                <input type="hidden" name="user_id" value="<?php echo $session->user_id ?>">
                 <div class="">
                     <label for="inputNumber" class="col-12 col-form-label">Cover Photo Of The Book</label>
                     <div class="col-12">

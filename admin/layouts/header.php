@@ -1,9 +1,3 @@
-<?php require_once("./admin/init.php"); ?>
-<?php
-global $session;
-$user = Profile::find_item($session->user_id);
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 

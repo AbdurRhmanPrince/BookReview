@@ -20,6 +20,53 @@ class Photo extends User {
          }
     }
 
+   public  function upload_img($file)
+   {
+      $photo_quality = 60;
+      $imgName = uniqid() . $file["name"];
+      $uploadTo = 'C:\xampp\htdocs\bookreview\public\img\\';
+      if (!is_dir($uploadTo)) {
+         mkdir($$uploadTo);
+      }
+      $tempPath = $file["tmp_name"];
+      $originalPath = $uploadTo . $imgName;
+      if (self::compress_img($tempPath, $originalPath, $photo_quality)) {
+         $this->file = $imgName;
+      } else {
+         echo "failed to upload img";
+      }
+   }
+
+
+   private function compress_img($tempPath, $originalPath, $quality)
+   {
+      // Get image info 
+      $imgInfo = getimagesize($tempPath);
+      $mime = $imgInfo['mime'];
+
+      // Create a new image from file 
+      switch ($mime) {
+         case 'image/jpeg':
+            $image = imagecreatefromjpeg($tempPath);
+            break;
+         case 'image/png':
+            $image = imagecreatefrompng($tempPath);
+            break;
+         case 'image/gif':
+            $image = imagecreatefromgif($tempPath);
+            break;
+         default:
+            $image = imagecreatefromjpeg($tempPath);
+      }
+
+      // Save image 
+      if (imagejpeg($image, $originalPath, $quality)) {
+         return true;
+      } else {
+         return false;
+      }
+   }
+
 
 
 }

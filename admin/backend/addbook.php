@@ -11,22 +11,40 @@ if(Book::title_validation($database->escape_string($_POST["title"]))) {
         $book->title = $database->escape_string($_POST["title"]);
         $book->author = $database->escape_string($_POST["author"]);
         $book->summary = $database->escape_string($_POST["summary"]);
-        if($book->save()) {
-            echo "book post id is - ". $database->last_id();
-        }else{
-            echo "adding new books failed";
+
+        if (Photo::validate_photo($_FILES["file"])) {
+                // upload book and get id;
+                if($book->save()) {
+                    $book_id = $database->last_id();
+                     $photo = new Photo();
+                     $photo->upload_img($_FILES["file"]);
+                    // $photo->file = "category.jpg";
+                     $photo->book_id = $book_id;   
+                
+                     if($photo->save()) {
+                        $book->id = $book_id;
+                        $book->photo_id = $database->last_id();
+                        if($book->save()) {
+                            echo "success";
+                        }else{
+                            echo "failed";
+                        }
+                     }else{
+                        echo "failed to insert photo dta";
+                     }
+                }else{
+                    // echo "adding new books failed";
+                    $response["book_data"] = "Failed to Save Book details.";
+
+                }
+        } else {
+            $response["photo_type"] = "Only image file can be uploaded.";
         }
+
 }else{
     $response["title"] = "Same Title Found.Try another one";
 };
 // Photo Validation,
-// if (Photo::validate_photo($_FILES["file"])) {
-//     // upload book and get id;
-//     $photo = new Photo();
-//     $photo->upload_img($_FILES["file"]);
-// } else {
-//     $response["photo_type"] = "Only image file can be uploaded.";
-// }
 
 
 

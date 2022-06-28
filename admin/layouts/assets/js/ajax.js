@@ -1,7 +1,7 @@
 $(document).ready(function () {
-//     let newBookForm = $("#new_book");
-const form = document.getElementById('form');
-
+    
+    // Creating new Book 
+    const form = document.getElementById('form');
     $(form).submit(function (e) { 
 
         $.ajax({
@@ -20,4 +20,18 @@ const form = document.getElementById('form');
         e.preventDefault();
         
     });
+
+
+    // function show_book() {
+    //     console.log(1);
+    // }
+
+
+    // showing single book through modal
+
+
+
+
+
+
 });

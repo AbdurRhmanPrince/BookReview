@@ -2,21 +2,13 @@
 <?php
 global $session;
 $user = Profile::find_item($session->user_id);
+$photo = new Photo();
 ?>
 
 <?php require_once("layouts/header.php"); ?>
 <?php require_once("layouts/sidebar.php"); ?>
 
-<div class="pagetitle">
-    <h1>Data Tables</h1>
-    <nav>
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-            <li class="breadcrumb-item">Tables</li>
-            <li class="breadcrumb-item active">Data</li>
-        </ol>
-    </nav>
-</div><!-- End Page Title -->
+
 
 <section class="section">
     <div class="row">
@@ -24,59 +16,49 @@ $user = Profile::find_item($session->user_id);
 
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Datatables</h5>
-                    <p>Add lightweight datatables to your project with using the <a href="https://github.com/fiduswriter/Simple-DataTables" target="_blank">Simple DataTables</a> library. Just add <code>.datatable</code> class name to any table you wish to conver to a datatable</p>
+                    <h5 class="card-title">Brief Overview of All Uploaded books. </h5>
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr class="text-center">
+                                    <th scope="col">Preview </th>
+                                    <th scope="col">Title</th>
+                                    <th scope="col">Author</th>
+                                    <th scope="col">Total Reviews </th>
+                                    <th scope="col">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
 
-                    <!-- Table with stripped rows -->
-                    <table class="table datatable">
-                        <thead>
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Name</th>
-                                <th scope="col">Position</th>
-                                <th scope="col">Age</th>
-                                <th scope="col">Start Date</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Brandon Jacob</td>
-                                <td>Designer</td>
-                                <td>28</td>
-                                <td>2016-05-25</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Bridie Kessler</td>
-                                <td>Developer</td>
-                                <td>35</td>
-                                <td>2014-12-05</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>Ashleigh Langosh</td>
-                                <td>Finance</td>
-                                <td>45</td>
-                                <td>2011-08-12</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">4</th>
-                                <td>Angus Grady</td>
-                                <td>HR</td>
-                                <td>34</td>
-                                <td>2012-06-11</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">5</th>
-                                <td>Raheem Lehner</td>
-                                <td>Dynamic Division Officer</td>
-                                <td>47</td>
-                                <td>2011-04-19</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <!-- End Table with stripped rows -->
+                                $books = Book::find_all_item();
+                                ?>
+
+                                <?php foreach ($books as $book) : ?>
+                                    <!-- img  -->
+                                    <?php $photo->file = Photo::find_item($book->photo_id)->file; ?>
+                                    <!-- end img setting -->
+                                    <tr class="text-center">
+                                        <th>
+                                            <a href="#"><img src="<?php echo $photo->img_src(); ?>" alt="" width="60px" height="60px"></a>
+                                        </th>
+                                        <td><?php echo $book->title; ?></td>
+                                        <td><?php echo $book->author; ?></td>
+                                        <td>28</td>
+                                        <td>
+                                            <button type="button" class=" viewBook btn btn-success m-1" data-toggle="modal" data-target="#" value="<?php echo $book->id ?> "><i class="bi bi-eye" onclick="show_book();"></i></button>
+                                            <a href="#" class="btn btn-primary m-1">
+                                                <i class="bi bi-pencil-square"></i>
+                                            </a>
+                                            <button type="button" class="btn btn-danger text-white m-1"><i class="bi bi-trash"></i></button>
+                                        </td>
+                                    </tr>
+
+                                <?php endforeach ?>
+                            </tbody>
+                        </table>
+                        <!-- End Table with stripped rows -->
+                    </div>
 
                 </div>
             </div>
@@ -84,6 +66,30 @@ $user = Profile::find_item($session->user_id);
         </div>
     </div>
 </section>
+
+<!-- modal -->
+<!-- Modal -->
+<div class="modal fade" id="bookModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- modal -->
+
 
 <?php require_once("layouts/footer.php"); ?>
 <script src="/bookreview/admin/layouts/assets/js/ajax.js"></script>

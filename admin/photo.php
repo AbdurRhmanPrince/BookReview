@@ -67,6 +67,10 @@ class Photo extends User {
       }
    }
 
+   public function img_src() {
+      $src = "/bookreview/public/img/";
+      return ((empty($this->file) || is_null($this->file)) ? "https://picsum.photos/seed/picsum/200" : $src .$this->file);
+   }
 
 
 }

@@ -15,8 +15,8 @@ echo $photo->img_src();
 //     echo "failed";
 // }
 
-// global $session;
-//  $session->login(1);
+global $session;
+ $session->login(1);
 
 
 // $curPageName = substr($_SERVER["SCRIPT_NAME"], strrpos($_SERVER["SCRIPT_NAME"], "/") + 1);

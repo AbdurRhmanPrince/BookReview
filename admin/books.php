@@ -46,7 +46,7 @@ $photo = new Photo();
                                         <td><?php echo $book->author; ?></td>
                                         <td>28</td>
                                         <td>
-                                            <button type="button" class=" viewBook btn btn-success m-1" data-toggle="modal" data-target="#" value="<?php echo $book->id ?> "><i class="bi bi-eye" onclick="show_book();"></i></button>
+                                            <button type="button" class=" viewBook btn btn-success m-1" data-toggle="modal" data-target="#" data-id="<?php echo $book->id ?> "><i class="bi bi-eye"></i></button>
                                             <a href="#" class="btn btn-primary m-1">
                                                 <i class="bi bi-pencil-square"></i>
                                             </a>
@@ -93,3 +93,22 @@ $photo = new Photo();
 
 <?php require_once("layouts/footer.php"); ?>
 <script src="/bookreview/admin/layouts/assets/js/ajax.js"></script>
+
+
+<script>
+    $(".viewBook").on("click", function() {
+        let bookId = $(this).attr("data-id");
+        // alert(bookId);
+        // console.log(bookId);
+        $.ajax({
+            type: "POST",
+            url: "/bookreview/admin/backend/ajax.php",
+            data: {
+                bookId: bookId
+            },
+            success: function(response) {
+                console.log(response);
+            },
+        });
+    });
+</script>

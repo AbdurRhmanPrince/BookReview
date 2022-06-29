@@ -38,7 +38,6 @@ require_once("db_config.php");
 
     public function escape_string($data) {
         $data = $this->connection->real_escape_string($data);
-        // $data = htmlspecialchars($data);
         
         return $data;
     }

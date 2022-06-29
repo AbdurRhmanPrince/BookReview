@@ -1,30 +1,20 @@
 <?php
 require_once("init.php");
 
-$photo = new Photo();
-$book = Book::find_item(7);
-$photo->file = Photo::find_item($book->photo_id)->file;
-echo $photo->img_src();
-// echo Photo::find_item(1);
-// $photo->file = "category.jpg";
-// $photo->book_id = 1;
+// $photo = new Photo();
+$book = Book::find_item(14);
+// $string = "<p style='text-center'>text</p>";
+$string  = htmlspecialchars_decode($book->summary, ENT_NOQUOTES);
 
-// if($photo->save()) {
-//     echo "success";
-// }else{
-//     echo "failed";
-// }
+$string = trim($string);
+echo $string;
+// $photo->file = Photo::find_item($book->photo_id)->file;
 
-global $session;
- $session->login(1);
+// global $session;
+//  $session->login(1);
 
 
-// $curPageName = substr($_SERVER["SCRIPT_NAME"], strrpos($_SERVER["SCRIPT_NAME"], "/") + 1);
 
-//  print_r(explode(".", $curPageName));
-
-// echo "The current page name is: " . $curPageName;
-// echo "</br>";
 ?>
 
 <!-- <img src="https://picsum.photos/seed/picsum/200" alt=""> -->

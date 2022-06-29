@@ -47,7 +47,7 @@ $photo = new Photo();
                                         <td>28</td>
                                         <td>
                                             <button type="button" class=" viewBook btn btn-success m-1" data-toggle="modal" data-target="#bookModal" data-id="<?php echo $book->id ?> "><i class="bi bi-eye"></i></button>
-                                            <a href="#" class="btn btn-primary m-1">
+                                            <a href="editbook.php?id=<?php echo $book->id ?>" class="btn btn-primary m-1">
                                                 <i class="bi bi-pencil-square"></i>
                                             </a>
                                             <button type="button" class="btn btn-danger text-white m-1"><i class="bi bi-trash"></i></button>
@@ -87,18 +87,20 @@ $photo = new Photo();
                     <div class="float-right">
                         <i class="bi bi-clock-history"></i>
                         <span id="time"></span>
-                    </div>
-                    <p class="lead" id="summary">
-                        Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus.
-                    </p>
+                    </div><br>
+                    <div class="lead" id="summary">
 
+                    </div>
+                    <br>
                     <footer class="blockquote-footer"> <cite title="Source Title" id="author">Source Title</cite></footer>
 
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-success">Edit</button>
+                <a href="editbook.php?id=<?php echo $book->id ?>" class="btn btn-success">
+                Edit
+                </a>
             </div>
         </div>
     </div>
@@ -130,12 +132,14 @@ $photo = new Photo();
                 bookId: bookId
             },
             success: function(response) {
+                // console.log(response);
                 let book = JSON.parse(response);
                 bookTitle.text(book.title);
                 time.text(book.time);
-                bookImg.attr("src",book.photo_id);
-                summary.text(book.summary);
+                bookImg.attr("src", book.photo_id);
+                summary.append(book.summary);
                 author.text(book.author);
+
             },
         });
     });

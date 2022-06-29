@@ -46,7 +46,7 @@ $photo = new Photo();
                                         <td><?php echo $book->author; ?></td>
                                         <td>28</td>
                                         <td>
-                                            <button type="button" class=" viewBook btn btn-success m-1" data-toggle="modal" data-target="#" data-id="<?php echo $book->id ?> "><i class="bi bi-eye"></i></button>
+                                            <button type="button" class=" viewBook btn btn-success m-1" data-toggle="modal" data-target="#bookModal" data-id="<?php echo $book->id ?> "><i class="bi bi-eye"></i></button>
                                             <a href="#" class="btn btn-primary m-1">
                                                 <i class="bi bi-pencil-square"></i>
                                             </a>
@@ -73,17 +73,32 @@ $photo = new Photo();
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
+                <h5 class="modal-title" id="bookTitle">Modal title</h5>
+                <button type="button" class="close btn btn-primary" data-dismiss="modal" aria-label="Close">
+                    <i class="bi bi-x-lg"></i>
                 </button>
             </div>
             <div class="modal-body">
-                ...
+                <div class="box text-center">
+                    <img src="https://picsum.photos/seed/picsum/200" alt="" width="300px" height="300px" id="bookImg">
+                </div>
+                <div class="content">
+                    <br>
+                    <div class="float-right">
+                        <i class="bi bi-clock-history"></i>
+                        <span id="time"></span>
+                    </div>
+                    <p class="lead" id="summary">
+                        Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus.
+                    </p>
+
+                    <footer class="blockquote-footer"> <cite title="Source Title" id="author">Source Title</cite></footer>
+
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-success">Edit</button>
             </div>
         </div>
     </div>
@@ -97,6 +112,14 @@ $photo = new Photo();
 
 <script>
     $(".viewBook").on("click", function() {
+
+        let bookTitle = $("#bookTitle");
+        let bookImg = $("#bookImg");
+        let time = $("#time");
+        let summary = $("#summary");
+        let author = $("#author");
+
+
         let bookId = $(this).attr("data-id");
         // alert(bookId);
         // console.log(bookId);
@@ -107,7 +130,12 @@ $photo = new Photo();
                 bookId: bookId
             },
             success: function(response) {
-                console.log(response);
+                let book = JSON.parse(response);
+                bookTitle.text(book.title);
+                time.text(book.time);
+                bookImg.attr("src",book.photo_id);
+                summary.text(book.summary);
+                author.text(book.author);
             },
         });
     });

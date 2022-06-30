@@ -2,10 +2,7 @@ $(document).ready(function () {
     
     // Creating new Book 
     const form = document.getElementById('form');
-   
          $(form).submit(function (e) { 
-
-
             $.ajax({
                 type: "POST",
                 url: "/bookreview/admin/backend/bookcrud.php",
@@ -27,15 +24,9 @@ $(document).ready(function () {
             
         });
 
-
-
-
-
-    // showing single book through modal
-
-
-
-
-
-
 });
+
+
+function show_items(table) {
+    console.log( "your are requesting to show "+ table);
+}

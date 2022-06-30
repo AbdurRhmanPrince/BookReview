@@ -38,12 +38,12 @@ $user = Profile::find_item($session->user_id);
                                 <?php foreach ($books as $book) : ?>
                                     <!-- img  -->
                                     <?php
-                                        $img = Photo::img_src($book->file);
+                                    $img = Photo::img_src($book->file);
                                     ?>
                                     <!-- end img setting -->
                                     <tr class="text-center">
                                         <th>
-                                            <a href="#"><img src="<?php echo $img?>" alt="" width="60px" height="60px"></a>
+                                            <a href="#"><img src="<?php echo $img ?>" alt="" width="60px" height="60px"></a>
                                         </th>
                                         <td><?php echo $book->title; ?></td>
                                         <td><?php echo $book->author; ?></td>
@@ -111,37 +111,45 @@ $user = Profile::find_item($session->user_id);
 <!-- modal -->
 
 
-<?php require_once("layouts/footer.php"); ?>
 
 
 <script>
-    $(".viewBook").on("click", function() {
+    $(document).ready(function() {
 
-        let bookTitle = $("#bookTitle");
-        let bookImg = $("#bookImg");
-        let time = $("#time");
-        let summary = $("#summary");
-        let author = $("#author");
+        // showing the books
+
+        show_items("books");
 
 
-        let bookId = $(this).attr("data-id");
-        // alert(bookId);
-        // console.log(bookId);
-        $.ajax({
-            type: "POST",
-            url: "/bookreview/admin/backend/ajax.php",
-            data: {
-                bookId: bookId
-            },
-            success: function(response) {
-                // console.log(response);
-                let book = JSON.parse(response);
-                bookTitle.text(book.title);
-                time.text(book.time);
-                bookImg.attr("src", book.file);
-                summary.append(book.summary);
-                author.text(book.author);
-            },
+
+        // showing data in modal
+        $(".viewBook").on("click", function() {
+
+            let bookTitle = $("#bookTitle");
+            let bookImg = $("#bookImg");
+            let time = $("#time");
+            let summary = $("#summary");
+            let author = $("#author");
+            let bookId = $(this).attr("data-id");
+            $.ajax({
+                type: "POST",
+                url: "/bookreview/admin/backend/ajax.php",
+                data: {
+                    bookId: bookId
+                },
+                success: function(response) {
+                    // console.log(response);
+                    let book = JSON.parse(response);
+                    bookTitle.text(book.title);
+                    time.text(book.time);
+                    bookImg.attr("src", book.file);
+                    summary.append(book.summary);
+                    author.text(book.author);
+                },
+            });
         });
+
     });
 </script>
+
+<?php require_once("layouts/footer.php"); ?>

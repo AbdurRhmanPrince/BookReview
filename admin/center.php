@@ -65,9 +65,8 @@ class User {
             if(property_exists($cls,$col)) {                
                 if(!empty($this->$col)) {
                     if($col == "password") {
-                        $psw = password_hash($col,PASSWORD_DEFAULT);
-                        $prop_val[$col] = $database->escape_string($psw);
-
+                        $psw = password_hash($this->$col,PASSWORD_DEFAULT);
+                        $prop_val[$col] = $psw;
                     }else{
                         $prop_val[$col]=$database->escape_string($this->$col);
 

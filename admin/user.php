@@ -26,6 +26,33 @@ class Profile  extends User {
 
     }
 
+    public function login_user() {
+        global $database;
+        $sql = "SELECT * FROM users WHERE email = '$this->email'";
+        $result = $database->run_query($sql);
+        if ($result->num_rows > 0) {
+            $data = $result->fetch_assoc();
+            $hashedPassword = $data["password"];
+            $psw = $this->password;
+            if(password_verify($psw,$hashedPassword)) {
+                global $session;
+                $id = $data["id"];
+                $session->login($id);
+                return true;
+                // return $response["psw"] = "success";
+            }else{
+                // return $response["psw"] = "Password Incorrect";
+                return false;
+            }
+            // return $this->password;
+
+        } else {
+            return false;
+            // return $response["psw"] = "No Such User";
+        }
+
+
+    }
 
 
 

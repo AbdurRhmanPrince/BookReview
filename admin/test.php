@@ -1,6 +1,13 @@
 <?php
 require_once("init.php");
 
+if($session->loggedIn) {
+    echo 'yourre logged in ';
+    redirect("/bookreview/dashboard.php");
+}else{
+echo "not logged in";
+}
+// echo 'hello';
 // $photo = new Photo();
 // $book = Book::find_item(14);
 // // $string = "<p style='text-center'>text</p>";

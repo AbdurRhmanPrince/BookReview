@@ -41,7 +41,39 @@ $(document).ready(function () {
     }
 }
     // Login Data 
-    // console.log(show);
+    $(loginForm).submit(function (e) {
+
+        let email = $("#user_email").val();
+        let password = $("#user_psw").val();
+
+        let new_user = {
+            sign:"user",
+            email: email,
+            password: password
+        }
+
+        // checking all object prop and val, if null or empty then return true
+
+        // ajax request 
+            $.ajax({
+                type: "POST",
+                url: "/bookreview/admin/signin.php",
+                data: new_user,
+                success: function (response) {
+                    if(response == "ok") {
+                        // window.
+                            window.location = "/bookreview/dashboard.php";
+                    }
+                }
+            });
+       
+
+
+        // end of ajax
+
+        e.preventDefault();
+    });
+
 
     // create form
     $(create_form).submit(function (e) { 

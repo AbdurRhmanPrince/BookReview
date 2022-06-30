@@ -2,7 +2,8 @@
 <?php
 // global $session;
 $user = Profile::find_item($session->user_id);
-$photo = new Photo();
+
+
 ?>
 
 <?php require_once("layouts/header.php"); ?>
@@ -31,25 +32,25 @@ $photo = new Photo();
                             <tbody>
                                 <?php
 
-                                $books = Book::find_all_item();
+                                $books = Book::books($user->id);
                                 ?>
 
                                 <?php foreach ($books as $book) : ?>
                                     <!-- img  -->
                                     <?php
-                                        // $photo = Photo::find_item($book->id)->file;
+                                        $img = Photo::img_src($book->file);
                                     ?>
                                     <!-- end img setting -->
                                     <tr class="text-center">
                                         <th>
-                                            <a href="#"><img src="<?php ?>" alt="" width="60px" height="60px"></a>
+                                            <a href="#"><img src="<?php echo $img?>" alt="" width="60px" height="60px"></a>
                                         </th>
                                         <td><?php echo $book->title; ?></td>
                                         <td><?php echo $book->author; ?></td>
                                         <td>28</td>
                                         <td>
-                                            <button type="button" class=" viewBook btn btn-success m-1" data-toggle="modal" data-target="#bookModal" data-id="<?php echo $book->id ?> "><i class="bi bi-eye"></i></button>
-                                            <a href="editbook.php?id=<?php echo $book->id ?>" class="btn btn-primary m-1">
+                                            <button type="button" class=" viewBook btn btn-success m-1" data-toggle="modal" data-target="#bookModal" data-id="<?php echo $book->book_id; ?> "><i class="bi bi-eye"></i></button>
+                                            <a href="editbook.php?id=<?php echo $book->book_id; ?>" class="btn btn-primary m-1">
                                                 <i class="bi bi-pencil-square"></i>
                                             </a>
                                             <button type="button" class="btn btn-danger text-white m-1"><i class="bi bi-trash"></i></button>
@@ -100,7 +101,7 @@ $photo = new Photo();
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <a href="editbook.php?id=<?php echo $book->id ?>" class="btn btn-success">
+                <a href="editbook.php?id=<?php echo $book->book_id ?>" class="btn btn-success">
                     Edit
                 </a>
             </div>
@@ -137,10 +138,9 @@ $photo = new Photo();
                 let book = JSON.parse(response);
                 bookTitle.text(book.title);
                 time.text(book.time);
-                bookImg.attr("src", book.photo_id);
+                bookImg.attr("src", book.file);
                 summary.append(book.summary);
                 author.text(book.author);
-
             },
         });
     });

@@ -1,6 +1,6 @@
 <?php require_once("admin/init.php"); ?>
 <?php
-global $session;
+// global $session;
 $user = Profile::find_item($session->user_id);
 ?>
 

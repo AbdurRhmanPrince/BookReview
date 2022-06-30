@@ -22,12 +22,24 @@ class Photo extends User {
 
    public  function upload_img($file)
    {
+      $uploadTo = 'C:\xampp\htdocs\bookreview\public\img\\';
+
+      // if new photo is on server delete that first
+
+      if(!empty($this->file)) {
+         $oldImg = $uploadTo.$this->file;
+         if(file_exists($oldImg)) {
+            unlink($oldImg);
+         }
+      }
+
+
       $photo_quality = 60;
       $imgName = uniqid() . $file["name"];
-      $uploadTo = 'C:\xampp\htdocs\bookreview\public\img\\';
       if (!is_dir($uploadTo)) {
          mkdir($$uploadTo);
       }
+
       $tempPath = $file["tmp_name"];
       $originalPath = $uploadTo . $imgName;
       if (self::compress_img($tempPath, $originalPath, $photo_quality)) {
@@ -67,9 +79,11 @@ class Photo extends User {
       }
    }
 
-   public function img_src() {
+   public static function img_src($file) {
       $src = "/bookreview/public/img/";
-      return ((empty($this->file) || is_null($this->file)) ? "https://picsum.photos/seed/picsum/200" : $src .$this->file);
+      // return ((empty($this->file) || is_null($this->file)) ? "https://picsum.photos/seed/picsum/200" : $src .$this->file);
+      return ((empty($file) || is_null($file)) ? "https://picsum.photos/seed/picsum/200" : $src . $file);
+
    }
 
 

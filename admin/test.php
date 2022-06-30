@@ -8,9 +8,18 @@ require_once("init.php");
 
 // $string = trim($string);
 // echo $string;
+// print_r(Book::books())
+// $book = Book::find_book(19);
+// $book = Book::object_data($book);
 
-$photo = Photo::find_item(19);
-print_r($photo);
+// print_r($book);
+// foreach(Book::object_data($book) $as)
+
+
+
+// print_r(Book::object_data($book));
+// $vars = get_object_vars($book);
+// print_r($vars)
 // $photo->file = Photo::find_item($book->photo_id)->file;
 
 //  $session->login(6);
@@ -19,5 +28,5 @@ print_r($photo);
 
 ?>
 
-<!-- <img src="https://picsum.photos/seed/picsum/200" alt=""> -->
+<!-- <img src="echo Photo::img_src($book->file);" alt="" height="100"> -->
 <!-- Lorem ipsum dolor sit, amet consectetur adipisicing elit. Veritatis itaque optio excepturi eveniet pariatur animi voluptate cupiditate iste quia reiciendis. -->

@@ -12,6 +12,10 @@ $(document).ready(function () {
                 data: new FormData(this),
                 success: function (response) {
                     console.log(response);
+                    // if(response == "success") {
+                    //     location.reload();
+                    // }
+
                 },
                 cache: false,
                 contentType: false,

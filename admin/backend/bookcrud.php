@@ -6,26 +6,68 @@ $response = array();
 
 if(!empty($_POST["user_id"])) {
     
-    // assigning values
-    $book = new Book;        
-    $book->user_id = $database->escape_string($_POST["user_id"]);
-    $book->title = $database->escape_string($_POST["title"]);
-    $book->author = $database->escape_string($_POST["author"]);
-    $book->summary = $database->escape_string($_POST["summary"]);
+    // assigning values 
 
-     $book->save();
-        if($_FILES["file"]) {
-           if (Photo::validate_photo($_FILES["file"])) {
-              $photo = new Photo();
-             $photo->upload_img($_FILES["file"]);
-            //  global $database;
-             $photo->book_id = $database->last_id();
-              if($photo->save()) {
-                     echo 'success';
-                }
+    # if the input fields doesn't got a book id then create new book
 
-           }
-        }
+    if(!isset($_POST["book_id"]) && empty($_POST["book_id"]) ) {
+         $book = new Book;        
+         $book->user_id = $database->escape_string($_POST["user_id"]);
+         $book->title = $database->escape_string($_POST["title"]);
+         $book->author = $database->escape_string($_POST["author"]);
+         $book->summary = $database->escape_string($_POST["summary"]);
+
+         $book->save();
+            if($_FILES["file"]) {
+               if (Photo::validate_photo($_FILES["file"])) {
+                  $photo = new Photo();
+                  $photo->upload_img($_FILES["file"]);
+                  //  global $database;
+                  $photo->book_id = $database->last_id();
+                  if($photo->save()) {
+                           echo 'success';
+                     }
+
+               }
+            }
+    }else{
+      // echo "old";
+         $book = new Book;
+         $book->id = $database->escape_string($_POST["book_id"]);
+         $book->user_id = $database->escape_string($_POST["user_id"]);
+         $book->title = $database->escape_string($_POST["title"]);
+         $book->author = $database->escape_string($_POST["author"]);
+         $book->summary = $database->escape_string($_POST["summary"]);
+         // echo $book->summary;
+         $book->save();
+         
+         if ($_FILES["file"]) {
+            if (Photo::validate_photo($_FILES["file"])) {
+               $photo = new Photo();
+               $photo->id = $database->escape_string($_POST["photo_id"]);
+               $photo->file = Photo::find_item($_POST["photo_id"])->file;
+               $photo->upload_img($_FILES["file"]);
+               //  global $database;
+               // $photo->book_id = $database->last_id();
+               if ($photo->save()) {
+                  echo 'success';
+               }
+
+            }
+         }
+
+
+    }
+
+
+
+    # if the input fields got a book id then update
+
+
+
+   // print_r($_POST);
+
+
 }
 
 

@@ -8,7 +8,7 @@ $(document).ready(function () {
 
             $.ajax({
                 type: "POST",
-                url: "/bookreview/admin/backend/addbook.php",
+                url: "/bookreview/admin/backend/bookcrud.php",
                 data: new FormData(this),
                 success: function (response) {
                     console.log(response);

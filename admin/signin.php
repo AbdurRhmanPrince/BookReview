@@ -2,7 +2,7 @@
 require_once("init.php");
 
 if(!empty($_POST["email"]) && !empty($_POST["password"])) {
-    global $database;
+    // global $database;
     
     $users = new Profile();
     $users->name = $database->escape_string($_POST["name"]);

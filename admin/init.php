@@ -5,6 +5,7 @@ require_once("center.php");
 require_once("user.php");
 require_once("photo.php");
 require_once("book.php");
+global $session;
 
 
 

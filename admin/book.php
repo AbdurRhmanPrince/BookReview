@@ -2,7 +2,7 @@
 
 class Book extends User {
     protected static $db_table = "books";
-    protected $table_cols = array("id","user_id","photo_id","author","title","summary","time");
+    protected $table_cols = array("id","user_id","author","title","summary","time");
 
     public $id;
     public $user_id;

@@ -1,6 +1,6 @@
 <?php require_once("init.php"); ?>
 <?php
-global $session;
+// global $session;
 $user = Profile::find_item($session->user_id);
 ?>
 
@@ -14,6 +14,7 @@ $user = Profile::find_item($session->user_id);
             <!-- Vertical Form -->
             <form class="row g-3" enctype="multipart/form-data" id="form">
                 <input type="hidden" name="user_id" value="<?php echo $session->user_id ?>">
+                <input type="hidden" name="id" value="">
                 <div class="">
                     <label for="inputNumber" class="col-12 col-form-label">Cover Photo Of The Book</label>
                     <div class="col-12">
@@ -45,4 +46,3 @@ $user = Profile::find_item($session->user_id);
 </div>
 
 <?php require_once("layouts/footer.php"); ?>
-<script src="/bookreview/admin/layouts/assets/js/ajax.js"></script>

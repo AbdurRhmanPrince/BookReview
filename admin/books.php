@@ -1,6 +1,6 @@
 <?php require_once("init.php"); ?>
 <?php
-global $session;
+// global $session;
 $user = Profile::find_item($session->user_id);
 $photo = new Photo();
 ?>
@@ -36,11 +36,13 @@ $photo = new Photo();
 
                                 <?php foreach ($books as $book) : ?>
                                     <!-- img  -->
-                                    <?php $photo->file = Photo::find_item($book->photo_id)->file; ?>
+                                    <?php
+                                        // $photo = Photo::find_item($book->id)->file;
+                                    ?>
                                     <!-- end img setting -->
                                     <tr class="text-center">
                                         <th>
-                                            <a href="#"><img src="<?php echo $photo->img_src(); ?>" alt="" width="60px" height="60px"></a>
+                                            <a href="#"><img src="<?php ?>" alt="" width="60px" height="60px"></a>
                                         </th>
                                         <td><?php echo $book->title; ?></td>
                                         <td><?php echo $book->author; ?></td>
@@ -99,7 +101,7 @@ $photo = new Photo();
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 <a href="editbook.php?id=<?php echo $book->id ?>" class="btn btn-success">
-                Edit
+                    Edit
                 </a>
             </div>
         </div>
@@ -109,7 +111,6 @@ $photo = new Photo();
 
 
 <?php require_once("layouts/footer.php"); ?>
-<script src="/bookreview/admin/layouts/assets/js/ajax.js"></script>
 
 
 <script>

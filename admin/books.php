@@ -29,35 +29,10 @@ $user = Profile::find_item($session->user_id);
                                     <th scope="col">Actions</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <?php
+                            <tbody id="tbody">
 
-                                $books = Book::books($user->id);
-                                ?>
 
-                                <?php foreach ($books as $book) : ?>
-                                    <!-- img  -->
-                                    <?php
-                                    $img = Photo::img_src($book->file);
-                                    ?>
-                                    <!-- end img setting -->
-                                    <tr class="text-center">
-                                        <th>
-                                            <a href="#"><img src="<?php echo $img ?>" alt="" width="60px" height="60px"></a>
-                                        </th>
-                                        <td><?php echo $book->title; ?></td>
-                                        <td><?php echo $book->author; ?></td>
-                                        <td>28</td>
-                                        <td>
-                                            <button type="button" class=" viewBook btn btn-success m-1" data-toggle="modal" data-target="#bookModal" data-id="<?php echo $book->book_id; ?> "><i class="bi bi-eye"></i></button>
-                                            <a href="editbook.php?id=<?php echo $book->book_id; ?>" class="btn btn-primary m-1">
-                                                <i class="bi bi-pencil-square"></i>
-                                            </a>
-                                            <button type="button" class="btn btn-danger text-white m-1"><i class="bi bi-trash"></i></button>
-                                        </td>
-                                    </tr>
 
-                                <?php endforeach ?>
                             </tbody>
                         </table>
                         <!-- End Table with stripped rows -->
@@ -110,46 +85,49 @@ $user = Profile::find_item($session->user_id);
 </div>
 <!-- modal -->
 
+<?php require_once("layouts/footer.php"); ?>
 
 
 
 <script>
-    $(document).ready(function() {
+    // $(".viewBook").click(function(e) {
+    //     // console.log(this);
+    //     // e.preventDefault();
 
-        // showing the books
+    // });
+    // console.log(viewBtn.length);
 
-        show_items("books");
+    // // Show all books
+    // // showing in the modal content
+    // $(document).ready(function() {
+    //     // showing data in modal
+    //     $(".viewBook").on("click", function() {
 
+    //         let bookTitle = $("#bookTitle");
+    //         let bookImg = $("#bookImg");
+    //         let time = $("#time");
+    //         let summary = $("#summary");
+    //         let author = $("#author");
+    //         let bookId = $(this).attr("data-id");
+    //         console.log(bookId);
+    
+    //         // $.ajax({
+    //         //     type: "POST",
+    //         //     url: "/bookreview/admin/backend/ajax.php",
+    //         //     data: {
+    //         //         bookId: bookId
+    //         //     },
+    //         //     success: function(response) {
+    //         //         // console.log(response);
+    //         //         // let book = JSON.parse(response);
+    //         //         // bookTitle.text(book.title);
+    //         //         // time.text(book.time);
+    //         //         // bookImg.attr("src", book.file);
+    //         //         // summary.append(book.summary);
+    //         //         // author.text(book.author);
+    //         //     },
+    //         // });
+    //     });
 
-
-        // showing data in modal
-        $(".viewBook").on("click", function() {
-
-            let bookTitle = $("#bookTitle");
-            let bookImg = $("#bookImg");
-            let time = $("#time");
-            let summary = $("#summary");
-            let author = $("#author");
-            let bookId = $(this).attr("data-id");
-            $.ajax({
-                type: "POST",
-                url: "/bookreview/admin/backend/ajax.php",
-                data: {
-                    bookId: bookId
-                },
-                success: function(response) {
-                    // console.log(response);
-                    let book = JSON.parse(response);
-                    bookTitle.text(book.title);
-                    time.text(book.time);
-                    bookImg.attr("src", book.file);
-                    summary.append(book.summary);
-                    author.text(book.author);
-                },
-            });
-        });
-
-    });
+    // });
 </script>
-
-<?php require_once("layouts/footer.php"); ?>

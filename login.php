@@ -1,3 +1,13 @@
+<?php require_once("admin/init.php"); ?>
+<?php
+if ($session->loggedIn) {
+    redirect("/bookreview/dashboard.php");
+}
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 

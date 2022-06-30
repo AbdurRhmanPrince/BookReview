@@ -7,6 +7,29 @@ if($session->loggedIn) {
 }else{
 echo "not logged in";
 }
+                                <?php foreach ($books as $book) : ?>
+                                    <!-- img  -->
+                                    <?php
+                                    $img = Photo::img_src($book->file);
+                                    ?>
+                                    <!-- end img setting -->
+                                    <tr class="text-center">
+                                        <th>
+                                            <a href="#"><img src="<?php echo $img ?>" alt="" width="60px" height="60px"></a>
+                                        </th>
+                                        <td><?php echo $book->title; ?></td>
+                                        <td><?php echo $book->author; ?></td>
+                                        <td>28</td>
+                                        <td>
+                                            <button type='button' class=' viewBook btn btn-success m-1' data-toggle='modal' data-target='#bookModal' data-id=' '><i class='bi bi-eye'></i></button>
+                                            <a href='editbook.php?id=' class='btn btn-primary m-1'>
+                                                <i class='bi bi-pencil-square'></i>
+                                            </a>
+                                            <button type="button" class='btn btn-danger text-white m-1'><i class='bi bi-trash'></i></button>
+                                        </td>
+                                    </tr>
+
+                                <?php endforeach ?>
 // echo 'hello';
 // $photo = new Photo();
 // $book = Book::find_item(14);

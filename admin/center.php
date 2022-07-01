@@ -123,6 +123,16 @@ class User {
         return isset($this->id) ? $this->update() : $this->create();
     }
 
+    public static function delete($id) {
+        global $database;
+        $sql = "DELETE FROM ".static::$db_table . " WHERE id = $id";
+
+        $result = $database->run_query($sql);
+
+        return $result;
+    }
+
+
 }
 
 

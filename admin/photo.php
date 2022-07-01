@@ -87,6 +87,15 @@ class Photo extends User {
    }
 
 
+   public static function delete_file($file) {
+      $file = 'C:\xampp\htdocs\bookreview\public\img\\'.$file;
+         if (file_exists($file)) {
+            unlink($file);
+         }
+         
+   }
+
+
 }
 
 

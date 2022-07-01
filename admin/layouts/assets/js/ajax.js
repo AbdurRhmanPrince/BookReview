@@ -11,7 +11,8 @@ $(document).ready(function () {
                     // console.log(response);
                     if(response == "success") {
                         $("#form").trigger("reset");
-                        alert("successfully product added");
+                        console.log("successfully product added");
+                        // alert("successfully product added");
                     }
 
                 },
@@ -24,20 +25,7 @@ $(document).ready(function () {
             e.preventDefault();
             
         });
-
-
-
-
-        // modal view 
-
-
-
-
-
     show("books");
-
-
-
 });
 
 
@@ -56,19 +44,21 @@ function show(books) {
             if(table_rows.length > 0) {
                 for (let i = 0; i < table_rows.length; i ++) {
 
-                    $(tbody).append(
-                        "<tr>"+
-                        "<td><img src="+ table_rows[i].img +" alt='' width='60px' height='60px'></td>"+
-                        "<td>" + table_rows[i].title + "</td>"+
-                        "<td>" + table_rows[i].author + "</td>" +
-                        "<td>" + 3 + "</td>" +
-                        "<td>" + 
-                        "<button onclick='view_book(" + table_rows[i].id +");' type='button' class='viewBook btn btn-success m-1' data-toggle='modal' data-target='#bookModal'><i class='bi bi-eye'></i></button>"+
-                                "<a href='editbook.php?id="+ table_rows[i].id +"' class='btn btn-primary m-1'><i class='bi bi-pencil-square'></i></a>"+
-                                "<button type='button' class='btn btn-danger text-white m-1'><i class='bi bi-trash'></i></button>"
-                        + "</td>" +
+                    // before appending make sure the tr is unique 
+                        $(tbody).append(
+                            "<tr id = '" +table_rows[i].id +"'>"+
+                            "<td><img src="+ table_rows[i].img +" alt='' width='60px' height='60px'></td>"+
+                            "<td>" + table_rows[i].title + "</td>"+
+                            "<td>" + table_rows[i].author + "</td>" +
+                            "<td>" + 3 + "</td>" +
+                            "<td>" + 
+                            "<button onclick='view_item(" + table_rows[i].id +");' type='button' class='viewBook btn btn-success m-1' data-toggle='modal' data-target='#bookModal'><i class='bi bi-eye'></i></button>"+
+                                    "<a href='editbook.php?id="+ table_rows[i].id +"' class='btn btn-primary m-1'><i class='bi bi-pencil-square'></i></a>"+
+                            "<button onclick='delete_item(" + table_rows[i].id +");' type='button' class='btn btn-danger text-white m-1'><i class='bi bi-trash'></i></button>"
+                            + "</td>" +
+    
+                            +"</tr>");
 
-                        +"</tr>");
                 }
             }
             // console.log(table_rows.length);
@@ -78,14 +68,11 @@ function show(books) {
             // }
 
         },
-        // cache: false,
-        // contentType: false,
-        // processData: false
     });
 }
 
-
-function view_book(id) {
+// showing content in the modal
+function view_item(id) {
     // console.log(id);
             let bookTitle = $("#bookTitle");
             let bookImg = $("#bookImg");
@@ -98,6 +85,7 @@ function view_book(id) {
                 type: "POST",
                 url: "/bookreview/admin/backend/ajax.php",
                 data: {
+                    find:"book",
                     bookId: bookId
                 },
                 success: function(response) {
@@ -111,6 +99,27 @@ function view_book(id) {
                 },
             });
 
+
+    // console.log(ele.attr("data-id"));
+}
+
+
+function delete_item(id) {
+    let bookId = id;
+
+    $.ajax({
+        type: "POST",
+        url: "/bookreview/admin/backend/ajax.php",
+        data: {
+            delete:"book",
+            bookId: bookId
+        },
+        success: function (response) {
+            $("#tbody > tr").empty();
+            show("books");
+            console.log(response);
+        },
+    });
 
     // console.log(ele.attr("data-id"));
 }

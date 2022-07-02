@@ -1,22 +1,14 @@
+<?php require_once("init.php"); ?>
 <?php
-require_once("init.php");
-
-$user = $session->user_id;
-
-$summary_books = Summary::books_summary($user);
-
-$summaries_books = array();
-
-print_r($summary_books);
-
-
-
-
+$user = Profile::find_item($session->user_id);
+$summary = Summary::find_summary($_GET["id"]);
 ?>
 
-<!-- <img src="echo Photo::img_src($book->file);" alt="" height="100"> -->
-<!-- Lorem ipsum dolor sit, amet consectetur adipisicing elit. Veritatis itaque optio excepturi eveniet pariatur animi voluptate cupiditate iste quia reiciendis. -->
-<div class="col-lg-6">
+
+</div><?php require_once("layouts/header.php"); ?>
+<?php require_once("layouts/sidebar.php"); ?>
+<!-- summary -->
+<div class="col-lg-12">
     <div class="card">
         <div class="card-body">
             <h5 class="card-title" id="">Default Accordion</h5>
@@ -53,8 +45,6 @@ print_r($summary_books);
         </div>
     </div>
 </div>
-<?php require_once("layouts/header.php"); ?>
-<?php require_once("layouts/sidebar.php"); ?>
 
-
+<!-- end of summary -->
 <?php require_once("layouts/footer.php"); ?>

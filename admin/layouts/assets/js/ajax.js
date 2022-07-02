@@ -143,7 +143,7 @@ function summaries() {
               "<div class='card'>"+
                     "<div class='card-body'>"+
                 "<h5 class='card-title'>"+
-                "<button onclick='view_item(" + books_summaries[i].id + ");' type='button' class='viewBook btn btn-success m-1' data-toggle='modal' data-target='#bookModal'><i class='bi bi-eye'></i></button>"+
+                "<button onclick='view_item(" + books_summaries[i].id + ");' type='button' class='viewBook btn btn-primary m-1' data-toggle='modal' data-target='#bookModal'>View Book</button>"+
                 "<a href='editbook.php?id="+books_summaries[i].id+"' class ='btn btn-success'>Edit Book </a>"
                         +"</h5>"+
                         "<div class='book_data'>"+
@@ -163,13 +163,14 @@ function summaries() {
                             "</div>"+
                         "</div>"+
                         "<div class='card'>"+
-                        "<div class='card-header'>Header</div>"+
+                    "<div class='card-header d-flex flex-row-reverse'>"+"<a href='editsummary.php?id="+books_summaries[i].id+"' class ='btn btn-secondary'> Edit Summary </a></div>"+
                         "<div class='card-body'>"+"<h5 class='card-title'>" +
                          books_summaries[i].summary+"</h5>"+
                          
                         "</div>"+
                         "<div class='card-footer'>"+
-                            1
+                "<button onclick='' type='button' class='btn btn-primary m-1'>Total Reviews</button>" +
+                "<a href='editbook.php?id=" + books_summaries[i].id + "' class ='btn btn-success'>View Reviews </a>"
                         "</div>"+
                     "</div>"+
                     "</div>"+
@@ -182,7 +183,7 @@ function summaries() {
 
 
 
-            console.log(response);
+            // console.log(response);
         },
     });
 

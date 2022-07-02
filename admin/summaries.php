@@ -64,9 +64,6 @@ $user = Profile::find_item($session->user_id);
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <a href="editbook.php?id=" class="btn btn-success">
-                    Edit
-                </a>
             </div>
         </div>
     </div>

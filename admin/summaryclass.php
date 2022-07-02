@@ -27,6 +27,24 @@
     }
 
 
+    public static function find_summary($id) {
+        global $database;
+        $sql = "SELECT books.id,books.title,books.author, photos.file,summary.summary FROM books INNER JOIN summary ON summary.book_id = books.id INNER JOIN photos ON photos.book_id = books.id where books.id = $id";
+        $result = $database->run_query($sql);
+
+        $summary = array();
+        while ($row = $result->fetch_assoc()) {
+            $img = Summary::img_src($row["file"]);
+             $summary["id"] = $row["id"];
+             $summary["title"] = $row["title"];
+             $summary["author"] = $row["author"];
+             $summary["file"] = $img;
+             $summary["summary"] = $row["summary"];
+        }
+        return $summary;
+    }
+
+
 
 
 

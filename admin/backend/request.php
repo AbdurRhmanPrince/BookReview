@@ -21,5 +21,27 @@ if((!empty($_POST["get"])) && ($_POST["get"] == "summaries")) {
     echo json_encode($summary_books);
 }
 
+// update summary
+        // request:"summary_update",
+        // id:summary_id,
+        // book_id:book_id,
+        // summary:summary
+if ( (!empty($_POST["request"]))  && ($_POST["request"] == "summary_update") && (!empty($_POST["id"])) && (!empty($_POST["book_id"])) && (!empty($_POST["summary"]))) {
+    // global $database;
+    $summary = new Summary;
+    $summary->id = $database->escape_string($_POST["id"]);
+    $summary->book_id = $database->escape_string($_POST["book_id"]);
+    $summary->summary = $database->escape_string($_POST["summary"]);
+
+    if($summary->save()) {
+        echo "success";
+    }else{
+        echo "failed";
+    }
+
+}
+
+
+
 
 ?>

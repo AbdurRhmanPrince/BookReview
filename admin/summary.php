@@ -13,54 +13,18 @@ $user = Profile::find_item($session->user_id);
     <div class="card top-selling overflow-auto">
 
         <div class="card-body pb-0">
-            <h5 class="card-title">Top Selling <span>| Today</span></h5>
+            <h5 class="card-title">Total Summaries <span>|</span></h5>
 
             <table class="table table-borderless">
                 <thead>
                     <tr>
-                        <th scope="col">Preview</th>
-                        <th scope="col">Product</th>
-                        <th scope="col">Price</th>
-                        <th scope="col">Sold</th>
-                        <th scope="col">Revenue</th>
+                        <th scope="col">Book</th>
+                        <th scope="col">Summary</th>
+                        <th scope="col">Actions</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row"><a href="#"><img src="assets/img/product-1.jpg" alt=""></a></th>
-                        <td><a href="#" class="text-primary fw-bold">Ut inventore ipsa voluptas nulla</a></td>
-                        <td>$64</td>
-                        <td class="fw-bold">124</td>
-                        <td>$5,828</td>
-                    </tr>
-                    <tr>
-                        <th scope="row"><a href="#"><img src="assets/img/product-2.jpg" alt=""></a></th>
-                        <td><a href="#" class="text-primary fw-bold">Exercitationem similique doloremque</a></td>
-                        <td>$46</td>
-                        <td class="fw-bold">98</td>
-                        <td>$4,508</td>
-                    </tr>
-                    <tr>
-                        <th scope="row"><a href="#"><img src="assets/img/product-3.jpg" alt=""></a></th>
-                        <td><a href="#" class="text-primary fw-bold">Doloribus nisi exercitationem</a></td>
-                        <td>$59</td>
-                        <td class="fw-bold">74</td>
-                        <td>$4,366</td>
-                    </tr>
-                    <tr>
-                        <th scope="row"><a href="#"><img src="assets/img/product-4.jpg" alt=""></a></th>
-                        <td><a href="#" class="text-primary fw-bold">Officiis quaerat sint rerum error</a></td>
-                        <td>$32</td>
-                        <td class="fw-bold">63</td>
-                        <td>$2,016</td>
-                    </tr>
-                    <tr>
-                        <th scope="row"><a href="#"><img src="assets/img/product-5.jpg" alt=""></a></th>
-                        <td><a href="#" class="text-primary fw-bold">Sit unde debitis delectus repellendus</a></td>
-                        <td>$79</td>
-                        <td class="fw-bold">41</td>
-                        <td>$3,239</td>
-                    </tr>
+                <tbody id="summary_table">
+
                 </tbody>
             </table>
 
@@ -69,5 +33,25 @@ $user = Profile::find_item($session->user_id);
     </div>
 </div><!-- End Top Selling -->
 
+
+
+<div class="modal fade" id="bookModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            </div>
+            <div class="modal-body">
+                <div class="content">
+                    <div class="lead" id="summary">
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <?php require_once("layouts/footer.php"); ?>
-<script src="/bookreview/admin/layouts/assets/js/ajax.js"></script>

@@ -143,8 +143,8 @@ function summaries() {
               "<div class='card'>"+
                     "<div class='card-body'>"+
                 "<h5 class='card-title'>"+
-                "<button onclick='view_item(" + books_summaries[i].id + ");' type='button' class='viewBook btn btn-primary m-1' data-toggle='modal' data-target='#bookModal'>View Book</button>"+
-                "<a href='editbook.php?id="+books_summaries[i].id+"' class ='btn btn-success'>Edit Book </a>"
+                "<button onclick='view_item(" + books_summaries[i].book_id + ");' type='button' class='viewBook btn btn-primary m-1' data-toggle='modal' data-target='#bookModal'>View Book</button>"+
+                "<a href='editbook.php?id="+books_summaries[i].book_id+"' class ='btn btn-success'>Edit Book </a>"
                         +"</h5>"+
                         "<div class='book_data'>"+
                          "<div class='card mb-3'>"+
@@ -163,14 +163,14 @@ function summaries() {
                             "</div>"+
                         "</div>"+
                         "<div class='card'>"+
-                    "<div class='card-header d-flex flex-row-reverse'>"+"<a href='editsummary.php?id="+books_summaries[i].id+"' class ='btn btn-secondary'> Edit Summary </a></div>"+
+                    "<div class='card-header d-flex flex-row-reverse'>"+"<a href='editsummary.php?id="+books_summaries[i].book_id+"' class ='btn btn-secondary'> Edit Summary </a></div>"+
                         "<div class='card-body'>"+"<h5 class='card-title'>" +
                          books_summaries[i].summary+"</h5>"+
                          
                         "</div>"+
                         "<div class='card-footer'>"+
                 "<button onclick='' type='button' class='btn btn-primary m-1'>Total Reviews</button>" +
-                "<a href='editbook.php?id=" + books_summaries[i].id + "' class ='btn btn-success'>View Reviews </a>"
+                "<a href='editbook.php?id="+books_summaries[i].book_id+"' class ='btn btn-success'>View Reviews </a>"
                         "</div>"+
                     "</div>"+
                     "</div>"+
@@ -188,4 +188,110 @@ function summaries() {
     });
 
     // console.log(ele.attr("data-id"));
+}
+
+
+
+$("#summary_update").submit(function (e) { 
+        
+    let book_id = $("#book_id").val();
+    let summary_id = $("#summary_id").val();
+    let summary = $("#mytextarea").val();
+        summary = summary.trim();
+    let data = {
+        request:"summary_update",
+        id:summary_id,
+        book_id:book_id,
+        summary:summary
+    }
+
+    $.ajax({
+        type: "POST",
+        url: "/bookreview/admin/backend/request.php",
+        data: data,
+        success: function (response) {
+            if(response == "success") {
+                location.reload();
+                // console.log(response);            
+            }
+        }
+    });
+
+
+
+
+
+    
+    e.preventDefault();
+});
+
+
+// show summaries quick view
+
+summaries_quick();
+// fetch summaries 
+function summaries_quick() {
+    let summary_container = $("#summary_table");
+
+    $.ajax({
+        type: "POST",
+        url: "/bookreview/admin/backend/request.php",
+        data: {
+            get: "summaries",
+        },
+        success: function (response) {
+            let books_summaries = JSON.parse(response);
+            // console.log(books_summaries);
+            for (let i in books_summaries) {
+                let summarize = books_summaries[i].summary.substr(0, 20);
+
+                let html =
+                    "<tr>"+
+                    "<td>"+
+                    "<img width='80px' height='80px' src='" + books_summaries[i].file + "' class='img-fluid rounded-start' alt='img'></td>"+
+                    "<td>" + summarize + "..</td><td>"+
+                    "<button onclick='view_summary(" + books_summaries[i].summary_id + ");' type='button' class='viewBook btn btn-primary m-1' data-toggle='modal' data-target='#bookModal'><i class='bi bi-eye'></i></button>"+
+                    "<a href='editsummary.php?id=" + books_summaries[i].book_id + "' class ='btn btn-success'><i class='bi bi-pencil-square'></i> </a>" + " "+
+                    "<button onclick='delete_summary(" + books_summaries[i].summary_id + ");' type='button' class='viewBook btn btn-danger m-1' data-toggle='modal' data-target='#bookModal'><i class='bi bi-trash'></i></button>";
+                summary_container.append(html);
+            }
+
+
+
+
+
+            // console.log(response);
+        },
+    });
+
+    // console.log(ele.attr("data-id"));
+}
+
+
+// showing summary in the modal
+
+// showing content in the modal
+function view_summary(id) {
+
+    let show_summary = $("#summary");
+    let summaryId = id;
+
+    $.ajax({
+        type: "POST",
+        url: "/bookreview/admin/backend/ajax.php",
+        data: {
+            find: "summary",
+            summaryId: summaryId
+        },
+        success: function (response) {
+            let summary = JSON.parse(response);
+            show_summary.append(summary.summary);
+        },
+    });
+
+
+}
+
+function delete_summary(id) {
+    console.log(id);
 }

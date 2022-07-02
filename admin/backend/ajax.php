@@ -13,10 +13,13 @@ if(!empty($_POST["find"]) && !empty($_POST["bookId"]) && ($_POST["find"] == "boo
     $book = Book::find_book($id);
     Photo::delete_file($book->file);
     echo Book::delete($id);
+}
+else if(!empty($_POST["find"]) && ($_POST["find"] == "summary") && !empty($_POST["summaryId"])) {
+    $id = $_POST["summaryId"];
 
-    // echo json_encode($book);
-    // echo "hello there you're trying to delete a book";
-    // echo "empty";
+    $summary = Summary::find_item($id);
+    echo json_encode($summary);
+
 }
 
 ?>

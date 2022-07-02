@@ -3,20 +3,21 @@ require_once("init.php");
 
 $user = $session->user_id;
 
-$summary_books = Summary::books_summary($user);
+// $summary_books = Summary::books_summary($user);
 
-$summaries_books = array();
+// $summaries_books = array();
 
-print_r($summary_books);
+// print_r($summary_books);
 
-
+$summary = Summary::find_summary(33);
+print_r($summary);
 
 
 ?>
 
 <!-- <img src="echo Photo::img_src($book->file);" alt="" height="100"> -->
 <!-- Lorem ipsum dolor sit, amet consectetur adipisicing elit. Veritatis itaque optio excepturi eveniet pariatur animi voluptate cupiditate iste quia reiciendis. -->
-<div class="col-lg-6">
+<!-- <div class="col-lg-6">
     <div class="card">
         <div class="card-body">
             <h5 class="card-title" id="">Default Accordion</h5>
@@ -52,9 +53,62 @@ print_r($summary_books);
 
         </div>
     </div>
-</div>
+</div> -->
+
+<?php require_once("init.php"); ?>
+<?php
+$user = Profile::find_item($session->user_id);
+$summary = Summary::find_summary($_GET["id"]);
+?>
+
 <?php require_once("layouts/header.php"); ?>
 <?php require_once("layouts/sidebar.php"); ?>
+<!-- summary -->
+<div class="col-lg-12">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title" id="">Links</h5>
+            <div class="book_data">
+                <div class="card mb-3">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img src="<?php echo $summary["file"] ?>" class="img-fluid rounded-start" alt="...">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title text-capitalize">
+                                    <?php echo $summary["title"] ?>
+                                </h5>
+                                <p class="card-text book_author">
+                                    <?php echo $summary["author"] ?>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> <br>
+            <div class="card">
+                <form id="summary_update" enctype="multipart/form-data" id="form">
+                    <input type="hidden" id="summary_id" name="id" value="<?php echo $summary["summary_id"]; ?>">
+                    <input type="hidden" id="book_id" name="book_id" value="<?php echo $summary["book_id"]; ?>">
 
+                    <div class="col-12">
+                        <label for="inputPassword4" class="form-label">Summary</label>
+                        <div class="col-12">
+                            <textarea class="form-control" name="summary" style="height: 100px" id="mytextarea"><?php echo $summary["summary"]; ?>
+                    </textarea>
+                        </div>
+                    </div> <br>
+                    <div class="d-flex justify-content-between">
+                        <button type="submit" class="btn btn-primary">Update</button>
+                        <button type="reset" class="btn btn-danger ">DELETE</button>
+                    </div>
+                </form>
+            </div>
 
+        </div>
+    </div>
+</div>
+
+<!-- end of summary -->
 <?php require_once("layouts/footer.php"); ?>

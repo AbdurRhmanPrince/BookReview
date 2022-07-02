@@ -42,7 +42,13 @@ function active($url)
                 <span>Summary Edit | Delete</span>
             </a>
         </li>
-
+        <li class="nav-item">
+            <a class="nav-link <?php echo active("reviews.php"); ?>" href="/bookreview/admin/reviews.php">
+                <i class="bi bi-gear"></i>
+                <span>Reviews</span>
+            </a>
+        </li>
+        
         <li class="nav-heading">PHOTOS</li>
         <li class="nav-item">
             <a class="nav-link <?php echo active("media.php"); ?>" href="/bookreview/admin/media.php">

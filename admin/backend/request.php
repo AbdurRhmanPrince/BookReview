@@ -22,10 +22,6 @@ if((!empty($_POST["get"])) && ($_POST["get"] == "summaries")) {
 }
 
 // update summary
-        // request:"summary_update",
-        // id:summary_id,
-        // book_id:book_id,
-        // summary:summary
 if ( (!empty($_POST["request"]))  && ($_POST["request"] == "summary_update") && (!empty($_POST["id"])) && (!empty($_POST["book_id"])) && (!empty($_POST["summary"]))) {
     // global $database;
     $summary = new Summary;
@@ -41,6 +37,12 @@ if ( (!empty($_POST["request"]))  && ($_POST["request"] == "summary_update") && 
 
 }
 
+// fetch summaries and books
+if ((!empty($_POST["get"])) && ($_POST["get"] == "reviews")) {
+    // $summary_books = Summary::books_summary($session->user_id);
+    // echo json_encode($summary_books);
+    echo "hello there you are looking for reviews";
+}
 
 
 

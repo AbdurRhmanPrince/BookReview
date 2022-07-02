@@ -46,7 +46,7 @@ $summary = Summary::find_summary($_GET["id"]);
                     </div> <br>
                     <div class="d-flex justify-content-between">
                         <button type="submit" class="btn btn-primary">Update</button>
-                        <button type="reset" class="btn btn-danger ">DELETE</button>
+                        <button onclick="delete_summary(<?php echo $summary['summary_id']; ?>);" type="reset" class="btn btn-danger ">DELETE</button>
                     </div>
                 </form>
             </div>

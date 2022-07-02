@@ -19,7 +19,14 @@ else if(!empty($_POST["find"]) && ($_POST["find"] == "summary") && !empty($_POST
 
     $summary = Summary::find_item($id);
     echo json_encode($summary);
-
 }
+else if(!empty($_POST["deleteSummary"])) {
+    $summary = Summary::delete($_POST["deleteSummary"]);
+
+    if($summary > 0) {
+        echo "success";
+    }
+}
+
 
 ?>

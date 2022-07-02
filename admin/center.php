@@ -6,11 +6,6 @@ class User {
     protected static $db_table;
     // protected $table_cols = array("photo_id","name","email","password");
     
-    // public $id;
-    // public $photo_id;
-    // public $name;
-    // public $email;
-    // public $password;
 
     
     public static function find_all_item() {

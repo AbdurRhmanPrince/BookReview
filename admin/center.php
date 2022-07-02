@@ -132,6 +132,13 @@ class User {
         return $result;
     }
 
+    public static function img_src($file)
+    {
+        $src = "/bookreview/public/img/";
+        // return ((empty($this->file) || is_null($this->file)) ? "https://picsum.photos/seed/picsum/200" : $src .$this->file);
+        return ((empty($file) || is_null($file)) ? "https://picsum.photos/seed/picsum/200" : $src . $file);
+    }
+
 
 }
 

@@ -6,47 +6,35 @@ $user = Profile::find_item($session->user_id);
 <?php require_once("layouts/header.php"); ?>
 <?php require_once("layouts/sidebar.php"); ?>
 
+<!-- filter -->
 
-
-
-
-
+<div class="btn-group m-2" role="group" aria-label="Basic example">
+    <button type="button" class="btn btn-primary disabled">Oldest</button>
+    <button type="button" class="btn btn-primary">Newest</button>
+</div>
+<!-- according -->
 <section class="section">
-    <div class="row">
-        <div class="col-lg-12">
-
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Brief Overview of All Uploaded books. </h5>
-                    <div class="table-responsive">
-                        <table class="table table-hover">
-                            <thead>
-                                <tr class="text-center">
-                                    <th scope="col">Preview </th>
-                                    <th scope="col">Title</th>
-                                    <th scope="col">Author</th>
-                                    <th scope="col">Total Reviews </th>
-                                    <th scope="col">Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody id="tbody">
+    <div class="row" id="summary_container">
 
 
 
-                            </tbody>
-                        </table>
-                        <!-- End Table with stripped rows -->
-                    </div>
 
-                </div>
-            </div>
-
-        </div>
     </div>
 </section>
 
-<!-- modal -->
-<!-- Modal -->
+<!--  -->
+<!-- Basic Pagination -->
+<nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+    </ul>
+</nav><!-- End Basic Pagination -->
+
+
 <div class="modal fade" id="bookModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -76,13 +64,13 @@ $user = Profile::find_item($session->user_id);
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <a href="editbook.php?id=<?php echo $book->book_id ?>" class="btn btn-success">
+                <a href="editbook.php?id=" class="btn btn-success">
                     Edit
                 </a>
             </div>
         </div>
     </div>
 </div>
-<!-- modal -->
+
 
 <?php require_once("layouts/footer.php"); ?>

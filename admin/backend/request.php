@@ -13,7 +13,12 @@ if(!empty($_POST["request"]) && ($_POST["request"] == "books"))  {
     $data = json_encode($all_books);
     echo $data;
 
+}
 
+// fetch summaries and books
+if((!empty($_POST["get"])) && ($_POST["get"] == "summaries")) {
+    $summary_books = Summary::books_summary($session->user_id);
+    echo json_encode($summary_books);
 }
 
 

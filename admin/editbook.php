@@ -58,4 +58,3 @@ $book = Book::find_book($_GET["id"]);
 </div>
 
 <?php require_once("layouts/footer.php"); ?>
-<!-- <script src="/bookreview/admin/layouts/assets/js/ajax.js"></script> -->

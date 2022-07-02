@@ -123,3 +123,68 @@ function delete_item(id) {
 
     // console.log(ele.attr("data-id"));
 }
+
+summaries();
+// fetch summaries 
+function summaries() {
+    let summary_container = $("#summary_container");
+
+    $.ajax({
+        type: "POST",
+        url: "/bookreview/admin/backend/request.php",
+        data: {
+            get: "summaries",
+        },
+        success: function (response) {
+            let books_summaries = JSON.parse(response);
+            for(let i in books_summaries) {
+            let html =
+             "<div class='col-lg-6'>" +
+              "<div class='card'>"+
+                    "<div class='card-body'>"+
+                "<h5 class='card-title'>"+
+                "<button onclick='view_item(" + books_summaries[i].id + ");' type='button' class='viewBook btn btn-success m-1' data-toggle='modal' data-target='#bookModal'><i class='bi bi-eye'></i></button>"+
+                "<a href='editbook.php?id="+books_summaries[i].id+"' class ='btn btn-success'>Edit Book </a>"
+                        +"</h5>"+
+                        "<div class='book_data'>"+
+                         "<div class='card mb-3'>"+
+                                "<div class='row g-0'>"+
+                                    "<div class='col-md-4'>"+
+                                    "<img src='"+books_summaries[i].file+"' class='img-fluid rounded-start' alt='img'>"+"</div>"+
+                                    "<div class='col-md-8'>"+
+                                        "<div class='card-body'>"+
+                                            "<h5 class='card-title text-capitalize'>" + books_summaries[i].title +"</h5>"+
+                                            "<p class='card-text book_author'>"+
+                                            books_summaries[i].author
+                                            +"</p>"+
+                                        "</div>"+
+                                    "</div>"+
+                                "</div>"+
+                            "</div>"+
+                        "</div>"+
+                        "<div class='card'>"+
+                        "<div class='card-header'>Header</div>"+
+                        "<div class='card-body'>"+"<h5 class='card-title'>" +
+                         books_summaries[i].summary+"</h5>"+
+                         
+                        "</div>"+
+                        "<div class='card-footer'>"+
+                            1
+                        "</div>"+
+                    "</div>"+
+                    "</div>"+
+            "</div>"+
+        "</div>";
+                summary_container.append(html);
+        }
+
+
+
+
+
+            console.log(response);
+        },
+    });
+
+    // console.log(ele.attr("data-id"));
+}

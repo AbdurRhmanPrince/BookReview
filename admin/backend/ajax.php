@@ -28,5 +28,12 @@ else if(!empty($_POST["deleteSummary"])) {
     }
 }
 
+// else if(!empty($_POST["request"]) && ($_POST["request"] == "addSummary") && !empty($_POST["name"])&& !empty($_POST["book_id"]) && !empty($_POST["review"])) {
+//     echo "i have catched you";
+// }
+                // request: "addSummary",
+                // name: name,
+                // book_id: book_id,
+                // review: review
 
 ?>

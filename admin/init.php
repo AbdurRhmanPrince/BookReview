@@ -7,6 +7,7 @@ require_once("user.php");
 require_once("photo.php");
 require_once("book.php");
 require_once("summaryclass.php");
+require_once("reviewclass.php");
 
 global $session;
 

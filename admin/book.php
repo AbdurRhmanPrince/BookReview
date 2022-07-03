@@ -34,10 +34,11 @@ class Book extends User {
 
     public static function find_book($id) {
         global $database;
-        $sql = "SELECT * FROM books INNER JOIN photos ON books.id =photos.book_id WHERE books.id=$id";
+        $sql = "SELECT * FROM books INNER JOIN photos ON photos.book_id = books.id WHERE books.id = $id";
         $result = $database->run_query($sql);
         $data = $result->fetch_assoc();
         return static::object_data($data);
+        // return $data;
     }
 
     public static function books($userId) {
@@ -63,6 +64,17 @@ class Book extends User {
         $data_set = array();
         while ($row = $result->fetch_assoc()) {
             $data_set[] = static::object_data($row);
+        }
+        return $data_set;
+    }
+
+    public static function book_with_summary_review($id) {
+        global $database;
+        $sql = "SELECT * from reviews where book_id = $id";
+        $result = $database->run_query($sql);
+        $data_set = array();
+        while ($row = $result->fetch_assoc()) {
+            $data_set[] = $row;
         }
         return $data_set;
     }

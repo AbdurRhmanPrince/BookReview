@@ -305,63 +305,24 @@ function delete_summary(id) {
 }
 
 
-reviews();
-// fetch summaries 
-function reviews() {
-    let summary_container = $("#reviews_container");
+// reviews();
+// // fetch summaries 
+// function reviews() {
+//     let summary_container = $("#reviews_container");
 
-    $.ajax({
-        type: "POST",
-        url: "/bookreview/admin/backend/request.php",
-        data: {
-            get: "reviews",
-        },
-        success: function (response) {
-            // let books_summaries = JSON.parse(response);
-            console.log(response);
-            // for (let i in books_summaries) {
-            //     let html =
-            //         "<div class='col-lg-6'>" +
-            //         "<div class='card'>" +
-            //         "<div class='card-body'>" +
-            //         "<h5 class='card-title'>" +
-            //         "<button onclick='view_item(" + books_summaries[i].book_id + ");' type='button' class='viewBook btn btn-primary m-1' data-toggle='modal' data-target='#bookModal'>View Book</button>" +
-            //         "<a href='editbook.php?id=" + books_summaries[i].book_id + "' class ='btn btn-success'>Edit Book </a>"
-            //         + "</h5>" +
-            //         "<div class='book_data'>" +
-            //         "<div class='card mb-3'>" +
-            //         "<div class='row g-0'>" +
-            //         "<div class='col-md-4'>" +
-            //         "<img src='" + books_summaries[i].file + "' class='img-fluid rounded-start' alt='img'>" + "</div>" +
-            //         "<div class='col-md-8'>" +
-            //         "<div class='card-body'>" +
-            //         "<h5 class='card-title text-capitalize'>" + books_summaries[i].title + "</h5>" +
-            //         "<p class='card-text book_author'>" +
-            //         books_summaries[i].author
-            //         + "</p>" +
-            //         "</div>" +
-            //         "</div>" +
-            //         "</div>" +
-            //         "</div>" +
-            //         "</div>" +
-            //         "<div class='card'>" +
-            //         "<div class='card-header d-flex flex-row-reverse'>" + "<a href='editsummary.php?id=" + books_summaries[i].book_id + "' class ='btn btn-secondary'> Edit Summary </a></div>" +
-            //         "<div class='card-body'>" + "<h5 class='card-title'>" +
-            //         books_summaries[i].summary + "</h5>" +
+//     $.ajax({
+//         type: "POST",
+//         url: "/bookreview/admin/backend/request.php",
+//         data: {
+//             get: "reviews",
+//         },
+//         success: function (response) {
+//             // let books_summaries = JSON.parse(response);
+//             console.log(response);
+//             if(response == "success") {
+//                 window.location.reload();
+//             }
+//         },
+//     });
 
-            //         "</div>" +
-            //         "<div class='card-footer'>" +
-            //         "<button onclick='' type='button' class='btn btn-primary m-1'>Total Reviews</button>" +
-            //         "<a href='editbook.php?id=" + books_summaries[i].book_id + "' class ='btn btn-success'>View Reviews </a>"
-            //     "</div>" +
-            //         "</div>" +
-            //         "</div>" +
-            //         "</div>" +
-            //         "</div>";
-            //     summary_container.append(html);
-            // }
-
-        },
-    });
-
-}
+// }

@@ -40,8 +40,10 @@ class User {
         $cls = new $classObject();
             foreach($data as $key => $val) {
                 if($cls->has_key($key)) {
-                     $cls->$key= $val;    
-
+                    if($key == "file") {
+                       $val= Photo::img_src($val);
+                    }
+                     $cls->$key= $val;
                 }
           }
             

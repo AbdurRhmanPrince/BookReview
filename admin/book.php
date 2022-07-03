@@ -43,6 +43,8 @@ class Book extends User {
     public static function books($userId) {
         global $database;
         $sql = "SELECT * FROM books INNER JOIN photos ON books.id =photos.book_id WHERE user_id = $userId";
+
+
         $result = $database->run_query($sql);
         $data_set = array();
         while ($row = $result->fetch_assoc()) {
@@ -52,6 +54,20 @@ class Book extends User {
         // $data = $result->fetch_assoc();
         // return static::object_data($data);
     }
+
+
+    public static function showcase_slides() {
+        global $database;
+        $sql = "SELECT * FROM books INNER JOIN photos ORDER BY books.id DESC LIMIT 6";
+        $result = $database->run_query($sql);
+        $data_set = array();
+        while ($row = $result->fetch_assoc()) {
+            $data_set[] = static::object_data($row);
+        }
+        return $data_set;
+    }
+
+
 
 
 }
